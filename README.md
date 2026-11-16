@@ -273,3 +273,11 @@ npx skills add GoogleChrome/modern-web-guidance
 ~~~
 
 이 스킬은 본 저장소에 번들되지 않은 선택적 외부 스킬입니다. 가이드 조회만으로 실제 브라우저 테스트를 대신하지 않으며, 비 UI 작업에는 적용하지 않습니다. 가이드가 미설치·사용 불가이면 가능한 브라우저 테스트로 진행하고, 사용할 수 있는 브라우저 테스트 수단이 모두 없을 때만 UI 정적 대체 경로를 사용합니다.
+
+### chrome-devtools-mcp (선택적 외부 MCP 도구)
+
+실제 브라우저 검증이 필요한 작업에서는 `modern-web-guidance`로 기준을 확인한 뒤, 호스트에 `chrome-devtools-mcp`가 설치·연결되어 있으면 우선 활용해 DOM·스타일·콘솔·네트워크·성능을 확인할 수 있습니다.
+
+- **GitHub 저장소**: [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+
+이 도구 역시 본 저장소에 번들되지 않은 선택적 외부 MCP 도구이며 필수로 고정하지 않습니다. 미설치·사용 불가 시 자동 설치하지 않고 호스트의 다른 브라우저 도구나 프로젝트 기존 E2E 명령으로 진행하며, 기존 E2E suite가 필수 AC인 경우 수동 MCP 확인으로 대체·생략하지 않습니다.
