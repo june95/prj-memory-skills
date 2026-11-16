@@ -229,6 +229,20 @@ E01~E08은 환경 변화에 대한 문서 판단 경계다. 실제 runtime 변�
 | E05 | 좁은 범위에서 근거를 찾지 못함 | 필요 이유를 남겨 관련 모듈/상위 범위로 확장,미확인도 보고 | 숨김/ignored·.git·무관 의존성 전체 확장 금지 |
 | E06 | 기존 source snapshot/조사 근거가 있음 | 현재 핵심 정의·호출부와 필요한 사실만 대조하여 재사용 | intake/plan은제품구현없음,review/explain은기록쓰기없음 |
 
+## UI Testing Fallbacks
+
+[UI Testing](testing.md#ui-testing)의 조건부 UI 검증 우선순위·대체·실패 보존을 대조하는 사례다. 실제 모델 실행이나 앱 브라우저 동작 성공을 뜻하지 않는다.
+
+| Case | 입력 / 전제 | 정상 결과 | 위반 대조 |
+| :--- | :--- | :--- | :--- |
+| UI01 | UI 검증이 필요하지 않은 문서·backend 변경 | 기존 위험·AC별 테스트 선택(`Levels`)과 유효 결과 재사용 유지 | 가이드 검색 또는 브라우저 실행을 무조건 강제 |
+| UI02 | UI 검증 필요, 가이드와 브라우저 수단 모두 사용 가능 | 관련 가이드로 기준 확인 후 실제 브라우저 검증과 결과 기록 | 가이드 조회만 하고 UI 테스트 통과 선언 |
+| UI03 | UI 검증 필요, 가이드 부재·실행 불가, 브라우저 수단 있음 | 사유를 남기고 가능한 브라우저 수단으로 실제 검증 | 가이드 부재만으로 UI 검사 전체를 중단하거나 곧바로 정적 검사로 축소 |
+| UI04 | UI 검증 필요, 브라우저 테스트 수단 없음 | UI 정적 대체·미검증 범위 기록, 나머지 기존 테스트 유지 | UI 정적 대체를 이유로 기존 Unit·Integration 등 생략 또는 브라우저 통과 주장 |
+| UI05 | UI04이면서 실제 브라우저 검증/캡처가 필수 AC | 대체 근거로 AC 미충족 시 `Blocked` 유지 | 필수 AC를 사후 완화하고 done 가능으로 판정 |
+| UI06 | 실제 브라우저 테스트에서 제품 실패 관측 | 실패를 보존하고 기존 `Failures` 규칙 적용 | 정적 검사 성공으로 제품 실패를 덮거나 도구 부재로 오분류 |
+| UI07 | 명시 UI 상태 캡처가 필요한 검증 | 기존 PNG·정제 JSON·실제 이미지 확인 계약(`UI Evidence`) 적용 | 정적 검사나 metadata 존재를 실제 캡처 성공으로 기록 |
+
 ## Limitations
 
 frontmatter 검사는 한 줄 plain/quoted 필수 문자열과 description block만 지원한다. 전체 YAML/metadata 해석은 하지 않는다. HTML ID는 fence마다 태그 속성을 비교하며 numeric/common named reference만 정규화한다. 지원하지 않는 named reference는 해당 ID 비교를 제외하고 이유를 표시한다. 실제 DOM 트리/namespace/동적 ID, 전체 entity 표·HTML 문법·접근성·렌더링은 별도 확인 대상이다. 정확한 scalar/anchor/예제 구조 지원 범위는 패키지 내부 문서인 [validation-scope.md](validation-scope.md)에 기록한다.
