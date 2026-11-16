@@ -259,3 +259,17 @@ visualize는 이 저장소의 수정본을 정본으로 관리합니다. 원 aut
 ~~~text
 /prj-visualize 설명할 내용
 ~~~
+
+### modern-web-guidance (선택적 외부 스킬)
+
+UI 검증이 필요한 작업에서는 `prj-memory-execute`의 `test` 단계에서 [UI Testing](.agents/skills/memory-execute/references/testing.md#ui-testing) 순서에 따라 `modern-web-guidance`로 웹 표준 검증 기준을 먼저 확인한 뒤 실제 브라우저 테스트를 수행할 수 있습니다.
+
+- **GitHub 저장소**: [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance)
+- **공식 가이드 문서**: [Chrome for Developers — Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance)
+- **선택적 설치**:
+
+~~~sh
+npx skills add GoogleChrome/modern-web-guidance
+~~~
+
+이 스킬은 본 저장소에 번들되지 않은 선택적 외부 스킬입니다. 가이드 조회만으로 실제 브라우저 테스트를 대신하지 않으며, 비 UI 작업에는 적용하지 않습니다. 가이드가 미설치·사용 불가이면 가능한 브라우저 테스트로 진행하고, 사용할 수 있는 브라우저 테스트 수단이 모두 없을 때만 UI 정적 대체 경로를 사용합니다.
