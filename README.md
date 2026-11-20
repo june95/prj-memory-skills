@@ -42,6 +42,8 @@ Codex에서는 `$prj-memory-explain`, Claude Code에서는 `/prj-memory-explain`
 
 등록된 Task를 실행할 때는 `prj-memory-execute`의 구현 단계가 변경 범위에 맞는 지침을 고릅니다. 화면과 API가 함께 바뀌면 두 지침을 적용하고 결과를 하나의 `implementation.md`에 남깁니다. `prj-memory-execute`를 단독 설치해도 두 지침을 번들 문서로 읽을 수 있습니다.
 
+각 지침을 작성할 때 참고한 원문과 UI 검증 중 사용하는 선택 도구는 [참고 출처](#참고-출처)에서 확인할 수 있습니다.
+
 ## 배포 저장소 관리
 
 편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 allowlist입니다. source 폴더/name은 기존 내부 ID를 유지하고 source 12개와 CodeBurn은 internal로 숨깁니다. 설치 대상은 생성한 `skills/prj-*`입니다. CodeBurn runtime·개인 기록·개발용 도구는 공식 payload에 포함하지 않습니다.
@@ -267,6 +269,21 @@ visualize는 이 저장소의 수정본을 정본으로 관리합니다. 원 aut
 ~~~text
 /prj-visualize 설명할 내용
 ~~~
+
+## 참고 출처
+
+`prj-memory-execute`가 구현 중 직접 읽는 문서는 설치본에 포함된 [프론트엔드 지침](.agents/skills/frontend-implementation/SKILL.md)과 [백엔드 지침](.agents/skills/backend-implementation/SKILL.md)입니다. 아래 표는 설계에 참고한 버전의 원문을 가리킵니다. 표에 있는 스킬을 따로 설치할 필요는 없습니다.
+
+| 적용 범위 | 참고한 내용 | 원문 |
+| --- | --- | --- |
+| 프론트엔드 구현 | 새 화면의 사용자와 목적을 확인하고 구현 결과를 화면에서 점검하는 절차 | [Anthropic · Frontend Design](https://github.com/anthropics/skills/blob/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/SKILL.md) |
+| 백엔드·화면 연동 | 구현 전에 요청·응답·오류 계약과 기존 호출자의 기대 동작을 확인하는 방법 | [Addy Osmani · API and Interface Design](https://github.com/addyosmani/agent-skills/blob/63128d0d4515cc074f304c3a429343c5afeff978/skills/api-and-interface-design/SKILL.md) |
+| FastAPI 백엔드 구현 | 인증 의존성, 응답 모델, HTTP 상태 코드를 점검하는 예시 | [Microsoft · FastAPI Router](https://github.com/microsoft/skills/blob/4a2873faffc1b101a33a0b59c24713d4ed78142f/.github/plugins/azure-sdk-python/skills/fastapi-router-py/SKILL.md) |
+| `execute` 리뷰 | 구현자의 결론을 보기 전에 계약과 변경 내용을 대조하고, 이후 검증 근거로 발견 사항을 재확인하는 절차 | [Addy Osmani · Doubt-Driven Development](https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/skills/doubt-driven-development/SKILL.md) |
+| 독립 테스터 설계 · 정적 검사 | 저장소에 설정된 타입 검사·린트·포맷 검사를 구분하고 변경 범위에 맞게 선택하는 방법 | [Tyler R. Kendrick · Static Analysis](https://github.com/Tyler-R-Kendrick/agent-skills/blob/046405ac4ec8da6a2dacb0fbb7ef8be3e32f93a9/skills/testing/static-analysis/SKILL.md) |
+| 독립 테스터 설계 · API 검사 | 정상·오류 응답의 상태 코드와 호출자가 사용하는 응답 필드를 함께 검증하는 방법 | [Petr Kindlmann · API Testing](https://github.com/petrkindlmann/qa-skills/blob/5087a3461d49da76b1e794d9b0bfbd23f38dc75b/skills/api-testing/SKILL.md) |
+
+UI 작업에서는 아래 두 도구를 사용할 수 있습니다. `modern-web-guidance`는 프론트엔드 지침의 설계 출처이면서 실행 중 관련 기준을 조회하는 선택적 스킬이고, `chrome-devtools-mcp`는 실제 브라우저 동작을 확인하는 도구입니다.
 
 ### modern-web-guidance (선택적 외부 스킬)
 
