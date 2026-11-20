@@ -4,9 +4,9 @@
 
 ## 원본과 public 이름
 
-편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 `skillNames`·`sourceFiles`다. 기존 source ID는 내부 주소로 유지하며 public 이름은 `prj-` + source ID다. 공식 12개는 `prj-grill-me`, `prj-memory-intake`, `prj-memory-plan`, `prj-memory-execute`, `prj-memory-review`, `prj-memory-explain`, `prj-memory-tidy`, `prj-memory-wiki`, `prj-page-capture`, `prj-visualize`, `prj-frontend-implementation`, `prj-backend-implementation`이다.
+편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 `skillNames`·`sourceFiles`다. 기존 source ID는 내부 주소로 유지하며 public 이름은 `prj-` + source ID다. 공식 13개는 `prj-grill-me`, `prj-memory-intake`, `prj-memory-plan`, `prj-memory-execute`, `prj-memory-review`, `prj-memory-explain`, `prj-memory-tidy`, `prj-memory-wiki`, `prj-page-capture`, `prj-visualize`, `prj-frontend-implementation`, `prj-backend-implementation`, `prj-tester`이다.
 
-각 public 폴더의 `SKILL.md` name은 폴더명과 같고 description의 의미와 출처·license 고지를 보존한다. 생성물에는 개발용 `metadata.internal` 표시를 남기지 않는다. 개발 source 12개와 CodeBurn에는 `metadata.internal: true`를 지정한다. 기본 검색/전체 선택은 `skills/`의 public 12개만 노출한다. 명시 internal 선택이나 `INSTALL_INTERNAL_SKILLS` opt-in은 공식 설치 범위 밖이며 internal은 비밀 보호 수단이 아니다. CodeBurn·런타임·개발용 검증기·사용자 기록은 공식 설치 payload에 포함하지 않는다.
+각 public 폴더의 `SKILL.md` name은 폴더명과 같고 description의 의미와 출처·license 고지를 보존한다. 생성물에는 개발용 `metadata.internal` 표시를 남기지 않는다. 개발 source 13개와 CodeBurn에는 `metadata.internal: true`를 지정한다. 기본 검색/전체 선택은 `skills/`의 public 13개만 노출한다. 명시 internal 선택이나 `INSTALL_INTERNAL_SKILLS` opt-in은 공식 설치 범위 밖이며 internal은 비밀 보호 수단이 아니다. CodeBurn·런타임·개발용 검증기·사용자 기록은 공식 설치 payload에 포함하지 않는다.
 
 ## 독립 문서 계약
 
@@ -22,7 +22,7 @@
 
 | 명령 | 결과 |
 | :--- | :--- |
-| `node scripts/build-skills.mjs` | ignored `dist/grill-us-skills`에 public 12개 생성 |
+| `node scripts/build-skills.mjs` | ignored `dist/grill-us-skills`에 public 13개 생성 |
 | `node scripts/build-skills.mjs --publish` | 같은 생성 규칙으로 tracked `skills/` 생성 |
 | `node scripts/build-skills.mjs --check-published` | 현재 source와 `skills/`의 목록·내용·참조를 읽기만 대조 |
 
@@ -44,7 +44,7 @@ source 정책과 같은 소유 fixture에서 실제 설치·필요한 native 영
 
 `node scripts/prepare-skills-cutover.mjs`는 새 소유 OS temp root에 전환 후보를 생성하고 JSON으로 경로를 반환한다. 실제 source·metadata·catalog·기존 plugin은 변경하지 않는다. `--check <candidate-root>`는 원 입력/도구 SHA·후보 목록/내용·public freshness와 참조를 읽기만 확인한다. 정상0, missing/stale/변조·알 수 없는 항목/빈 디렉터리·경로 링크는1이며 자동 복구하지 않는다.
 
-후보에는 allowlist의 source 문서와 metadata, 내부 CodeBurn SKILL만 복사한다. 후보의 개발 source와 CodeBurn는 internal=true이며 public 12개는 숨김 표시를 제거한다. 후보의 project-profile은 최종 배포 계약으로 정렬한다. 후보의 `skills/`는 기존 생성기로 만들고 legacy catalog/plugin·CodeBurn runtime·사용자 기록은 포함하지 않는다. `.git` metadata는 clone 검증을 위해 후보 내용 비교에서 제외한다.
+후보에는 allowlist의 source 문서와 metadata, 내부 CodeBurn SKILL만 복사한다. 후보의 개발 source와 CodeBurn는 internal=true이며 public 13개는 숨김 표시를 제거한다. 후보의 project-profile은 최종 배포 계약으로 정렬한다. 후보의 `skills/`는 기존 생성기로 만들고 legacy catalog/plugin·CodeBurn runtime·사용자 기록은 포함하지 않는다. `.git` metadata는 clone 검증을 위해 후보 내용 비교에서 제외한다.
 
 입력은 실제 개발 저장소 또는 표식 있는 OS temp test source만 허용한다. 기존 생성기의 `readSkillInputs(repository)` 검증과 allowlist를 재사용한다. 반환은 `documents: Map<string,string>` 및 `sourceSnapshot: Record<relativePath,SHA256>`이며 원본을 수정하지 않는다. 준비 명령은 임의 출력/적용/삭제 옵션을 제공하지 않는다.
 

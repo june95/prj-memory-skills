@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "generator": "scripts/build-skills.mjs",
   "sourceSnapshot": {
-    "packaging/grill-us.json": "b2e32f32c5fb4e00937aacff267df3b9d6438b21c396ec95dd4ed07eae7bbac9",
+    "packaging/grill-us.json": "e789e0c24b295bfc551bd6af97447b47fe5ee22670fdd54f24a28890f094524d",
     ".agents/skills/backend-implementation/SKILL.md": "40ebcc9d65f35342e17705d6111089668fbf186a81297018dd54f819012cd3f1",
     ".agents/skills/frontend-implementation/SKILL.md": "35c103fb579595719afff9b78aac48a43a6061c1084341fce6e059956b9c1fa9",
     ".agents/skills/grill-me/SKILL.md": "799619da6bdf50144c7dde6b18e3855d83ba63ddf2abec343aace57d3c880742",
@@ -35,6 +35,7 @@
     ".agents/skills/page-capture/SKILL.md": "4a1052e3f50704be6a33af6cff8376c18ffe562243e11f8fc1f8fdaa640a9d63",
     ".agents/skills/page-capture/references/capture-contract.md": "f84f6a7ca8ece78c81544dbdc246d2b4859eed77d7665084aff01f2cb52713d4",
     ".agents/skills/page-capture/references/scenarios.md": "7db647f8a0f2926a98f704c66ce8c659788bf9e4d7c954396ade58336c494ff1",
+    ".agents/skills/tester/SKILL.md": "7deb9016fbee76f433d1dfec4a28b0ca63e423c82ff1000c07634dea8b99c4b2",
     ".agents/skills/visualize/SKILL.md": "74ed905ab6f35ae6d02abe30e732f0509794d75502ad96a0cf9aad1a2fb8bcf9",
     ".agents/skills/visualize/references/animations.md": "8a78f7f21237971cefe3e8850b8dd4e3ddfb37dbd3fdf27feeb1c811789799c7",
     ".agents/skills/visualize/references/anthropic-skill-guide-notes.md": "951e56b3cdc9f095c2184d80177ffe8840f3b02685f553fb56a2711a72f2e80e",
@@ -1436,6 +1437,10 @@
     {
       "path": "prj-page-capture/SKILL.md",
       "sha256": "7f729b21ec7d41d4c6e4f4993c8a8504e367797d10799fcb68ddcaf90cc91323"
+    },
+    {
+      "path": "prj-tester/SKILL.md",
+      "sha256": "6d45b338d711e05361c150f933e969759d5c56d8b83d051d292bc0759cf48bef"
     },
     {
       "path": "prj-visualize/references/animations.md",

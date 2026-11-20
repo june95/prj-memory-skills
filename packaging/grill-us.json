@@ -18,9 +18,11 @@
     "page-capture",
     "visualize",
     "frontend-implementation",
-    "backend-implementation"
+    "backend-implementation",
+    "tester"
   ],
   "sourceFiles": [
+    "tester/SKILL.md",
     "backend-implementation/SKILL.md",
     "frontend-implementation/SKILL.md",
     "grill-me/SKILL.md",

@@ -11,7 +11,7 @@ import { checkSkillFrontmatter, checkLinks, readFences, rewriteMarkdownLinks } f
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const moduleFile = path.join(repository, 'scripts/build-skills.mjs');
-const names = ['grill-me', 'memory-intake', 'memory-plan', 'memory-execute', 'memory-review', 'memory-explain', 'memory-tidy', 'memory-wiki', 'page-capture', 'visualize', 'frontend-implementation', 'backend-implementation'];
+const names = ['grill-me', 'memory-intake', 'memory-plan', 'memory-execute', 'memory-review', 'memory-explain', 'memory-tidy', 'memory-wiki', 'page-capture', 'visualize', 'frontend-implementation', 'backend-implementation', 'tester'];
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const metadata = root => JSON.parse(fs.readFileSync(path.join(root, 'packaging/grill-us.json'), 'utf8'));
 const outputAt = root => path.join(root, 'dist/grill-us-skills');

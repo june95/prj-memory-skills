@@ -7,7 +7,7 @@ import { checkLinks, checkSkillFrontmatter, readFences, rewriteMarkdownLinks } f
 
 const scriptPath = fileURLToPath(import.meta.url);
 const repositoryRoot = path.resolve(path.dirname(scriptPath), '..');
-const sourceNames = ['grill-me', 'memory-intake', 'memory-plan', 'memory-execute', 'memory-review', 'memory-explain', 'memory-tidy', 'memory-wiki', 'page-capture', 'visualize', 'frontend-implementation', 'backend-implementation'];
+const sourceNames = ['grill-me', 'memory-intake', 'memory-plan', 'memory-execute', 'memory-review', 'memory-explain', 'memory-tidy', 'memory-wiki', 'page-capture', 'visualize', 'frontend-implementation', 'backend-implementation', 'tester'];
 const generator = 'scripts/build-skills.mjs';
 const ownerFile = '.grill-us-skills-build.json';
 const fixtureFile = '.grill-us-skills-fixture.json';

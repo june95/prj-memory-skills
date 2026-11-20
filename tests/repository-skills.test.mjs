@@ -187,7 +187,7 @@ candidateTest('real installer default/wildcard and explicit selection use candid
     const result = await cli(run, ['add', source, '--list', ...args]);
     const discovered = [...result.stdout.matchAll(/^\s*(?:│\s*)?(prj-[a-z-]+)\s*$/gm)].map(match => match[1]).sort();
     assert.deepEqual(discovered, [...names].sort());
-    assert(!/^\s*│\s*(?:memory-|codeburn|grill-me|visualize|page-capture|frontend-implementation|backend-implementation)/m.test(result.stdout));
+    assert(!/^\s*│\s*(?:memory-|codeburn|grill-me|visualize|page-capture|frontend-implementation|backend-implementation|tester)/m.test(result.stdout));
    }
    for (const agent of ['codex', 'claude-code']) {
     const label = source === repo ? 'repository' : 'prepared';

@@ -1,0 +1,42 @@
+{
+  "skill": "prj-tester",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "Verify regression coverage for my working changes."
+      },
+      {
+        "prompt": "Run static checks on the staged and unstaged changes."
+      },
+      {
+        "prompt": "Test the API response and browser UI for this commit."
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "Run only the test stage of the active project memory task.",
+        "owner": "prj-memory-execute"
+      },
+      {
+        "prompt": "Do a read-only review of this commit and list findings.",
+        "owner": "prj-memory-review"
+      }
+    ]
+  },
+  "measure": {
+    "positive": [
+      {
+        "prompt": "현재 수정과 관련 새 파일을 검증하고 빠진 회귀 테스트를 추가해 줘."
+      },
+      {
+        "prompt": "지정한 커밋의 API 오류 응답만 테스트해 줘."
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "현재 Task의 test 단계만 실행해서 test.md에 기록해 줘.",
+        "owner": "prj-memory-execute"
+      }
+    ]
+  }
+}

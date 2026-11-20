@@ -11,6 +11,7 @@
 /.agents/skills/visualize/** text eol=lf
 /.agents/skills/frontend-implementation/** text eol=lf
 /.agents/skills/backend-implementation/** text eol=lf
+/.agents/skills/tester/** text eol=lf
 /packaging/grill-us.json text eol=lf
 /packaging/README.md text eol=lf
 /skills/** text eol=lf

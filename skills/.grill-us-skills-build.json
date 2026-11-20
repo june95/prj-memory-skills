@@ -362,6 +362,7 @@
     "prj-visualize/references/anthropic-skill-guide-notes.md": "951e56b3cdc9f095c2184d80177ffe8840f3b02685f553fb56a2711a72f2e80e",
     "prj-frontend-implementation/SKILL.md": "8726dfd32d4204a5f544ccc198c6949bea2fbed31c2c2739aeb0f1cfecebeab5",
     "prj-backend-implementation/SKILL.md": "ea20b6e69ffb39fcd86b8636b6ac6528a5bac72a4c477c688cef4109560e795a",
-    "build.json": "102b1c47ab8441d83cf9e4d486fd52c22ba1062b8636b76d38ef69ffdc74f8ae"
+    "prj-tester/SKILL.md": "6d45b338d711e05361c150f933e969759d5c56d8b83d051d292bc0759cf48bef",
+    "build.json": "8df4c5ba1b5b63baf138be97a362939c4f173285291f1f7862ffb8d32852f195"
   }
 }
