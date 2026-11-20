@@ -49,6 +49,8 @@ Codex에서는 `$prj-memory-explain`, Claude Code에서는 `/prj-memory-explain`
 
 `$prj-tester 현재 변경의 API 오류 응답을 검증해 줘`처럼 요청합니다. 기본 대상은 staged·unstaged 변경과 관련 신규 파일이며 PR·커밋을 지정할 수도 있습니다. 중요한 검증 공백이 있으면 회귀 테스트를 추가하고, 실행 결과와 미검증 범위를 채팅에 반환합니다. 단독 검증은 `.memory` 없이 사용할 수 있습니다.
 
+등록된 Task는 `$prj-memory-execute --stage test`처럼 요청합니다. `prj-memory-execute`만 설치해도 번들 테스터 지침으로 Task 범위와 완료 조건을 검증하고 결과를 `test.md`에 기록합니다. 새 테스트로 기존 리뷰 근거가 달라지면 재검토가 필요한 범위를 기록합니다.
+
 ## 배포 저장소 관리
 
 편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 allowlist입니다. source 폴더/name은 기존 내부 ID를 유지하고 source 13개와 CodeBurn은 internal로 숨깁니다. 설치 대상은 생성한 `skills/prj-*`입니다. CodeBurn runtime·개인 기록·개발용 도구는 공식 payload에 포함하지 않습니다.

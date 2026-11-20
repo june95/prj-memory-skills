@@ -37,7 +37,7 @@ T01부터 T03까지 순서대로 진행해줘
 | implementation | [implementation.md](references/implementation.md), [전문 지침 선택](references/implementation.md#specialist-guidance) | 변경 범위에 맞는 지침·최소 검증·단일 Task 보고 |
 | review | [prj-memory-review](references/bundled/memory-review/guide.md), [Compliance](references/review.md#compliance), [Review Delegation](references/review.md#review-delegation) | 같은 기준으로 읽기 전용 위임, 실행 담당이 기존 review.md/Task 상태 기록 |
 | review-action | [review.md](references/review.md#triage) | 실제 finding만 분류·처리 |
-| test | [testing.md](references/testing.md) | 필요한 검증, 단독 요청의 제품 자동 수정 없음 |
+| test | [testing.md](references/testing.md), [테스터 지침 적용](references/testing.md#tester-guidance) | Task 범위·완료 조건 검증 및 단일 test.md 기록 |
 | guide-update | [guides.md](references/guides.md#implementation-mode) | 검증된 공유 안내 영향만 |
 | refactor | [review.md](references/review.md#refactor) | 현재 변경의 동작 보존 |
 | commit-check / commit | [commit-check.md](references/commit-check.md) | 최종 품질·명시 후보·실제 결과 확인 |

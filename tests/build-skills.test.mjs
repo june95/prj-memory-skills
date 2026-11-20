@@ -94,6 +94,14 @@ test('public skills resolve independently and preserve canonical inputs, descrip
     assert(installed.includes('자동 설치하지 않는다'));
   }
   assert(read(path.join(built.outputRoot, 'prj-memory-execute/SKILL.md')).includes('/prj-memory-execute --stage review'));
+  const isolatedExecute = path.join(root, 'isolated', 'prj-memory-execute');
+  const testingGuide = path.join(isolatedExecute, 'references/testing.md');
+  const bundledTester = path.join(isolatedExecute, 'references/bundled/tester/guide.md');
+  const publicTester = read(path.join(built.outputRoot, 'prj-tester/SKILL.md'));
+  assert(publicTester.startsWith(read(bundledTester)));
+  assert.deepEqual(checkLinks(isolatedExecute, [testingGuide]).diagnostics.filter(d => d.severity === 'error'), []);
+  fs.renameSync(bundledTester, bundledTester + '.missing');
+  assert(checkLinks(isolatedExecute, [testingGuide]).diagnostics.some(d => d.severity === 'error' && d.message.includes('bundled/tester/guide.md')));
   const visualize = read(path.join(built.outputRoot, 'prj-visualize/SKILL.md'));
   assert(visualize.includes('license: MIT'));
   assert(visualize.includes('author: careerhackeralex'));

@@ -6,7 +6,7 @@
     ".agents/skills/backend-implementation/SKILL.md": "40ebcc9d65f35342e17705d6111089668fbf186a81297018dd54f819012cd3f1",
     ".agents/skills/frontend-implementation/SKILL.md": "35c103fb579595719afff9b78aac48a43a6061c1084341fce6e059956b9c1fa9",
     ".agents/skills/grill-me/SKILL.md": "799619da6bdf50144c7dde6b18e3855d83ba63ddf2abec343aace57d3c880742",
-    ".agents/skills/memory-execute/SKILL.md": "6579ed22673542f6dcdb4bbf39bb5183640fb0bc7a3e9b30c183968467090bfe",
+    ".agents/skills/memory-execute/SKILL.md": "215beb180eda38df19943a0bbcfd6bdf539b47d76e610767027d3f2988b30096",
     ".agents/skills/memory-execute/references/analysis.md": "e67218b2a26a3e299a216fca39a3e6899e4b14e6ba748503b3f6c62a851a96bd",
     ".agents/skills/memory-execute/references/commit-check.md": "095ba1ce7b638346b2be9d810248f95c5d5432e4c22c710dc44a789f915c7114",
     ".agents/skills/memory-execute/references/conventions.md": "357a4ec00e26a3417eb081bd09a194b3af4e27ab1cbbd0bdab1af5fbd3c5a5d4",
@@ -17,7 +17,7 @@
     ".agents/skills/memory-execute/references/review.md": "83ac09d4fe4db7f3c08c15b6989db48b3c9822e3abd8c4ca427316edb213a48b",
     ".agents/skills/memory-execute/references/scenarios.md": "8211ef84529d149f2ffcff1956ba3d0095e5a9f6e8395a5ec4abc7d6ee137ac3",
     ".agents/skills/memory-execute/references/templates.md": "5f1bbc111f9c9ef8e5feb790c0ade7bcd1ec72c0be953efed92980ed942233e4",
-    ".agents/skills/memory-execute/references/testing.md": "387c3ea3094287697762a4282cea551506878ac4e59c2c3ddeca045da2651242",
+    ".agents/skills/memory-execute/references/testing.md": "f4ff2f9943fe820d51d2cac181019ba6ccd334a79a02f97446a8226707b401a1",
     ".agents/skills/memory-execute/references/validation-scope.md": "a3a1f82b606556f5a76ee25a276388e5aaab4948ba18797cc6d55282901e2f00",
     ".agents/skills/memory-explain/SKILL.md": "c046b885643a126ce2ee930984b10d9412727941538bada219847897c22b1e38",
     ".agents/skills/memory-explain/references/scenarios.md": "096b2fa220736d02436ce50fe3eda363518b0ec69c02cc41208ce636a693c00c",
@@ -35,7 +35,7 @@
     ".agents/skills/page-capture/SKILL.md": "4a1052e3f50704be6a33af6cff8376c18ffe562243e11f8fc1f8fdaa640a9d63",
     ".agents/skills/page-capture/references/capture-contract.md": "f84f6a7ca8ece78c81544dbdc246d2b4859eed77d7665084aff01f2cb52713d4",
     ".agents/skills/page-capture/references/scenarios.md": "7db647f8a0f2926a98f704c66ce8c659788bf9e4d7c954396ade58336c494ff1",
-    ".agents/skills/tester/SKILL.md": "7deb9016fbee76f433d1dfec4a28b0ca63e423c82ff1000c07634dea8b99c4b2",
+    ".agents/skills/tester/SKILL.md": "ce3d54f3cb7878099ee5bc09a5f7e1fe2611fe5b534aa9d415a6028c28a374a3",
     ".agents/skills/visualize/SKILL.md": "74ed905ab6f35ae6d02abe30e732f0509794d75502ad96a0cf9aad1a2fb8bcf9",
     ".agents/skills/visualize/references/animations.md": "8a78f7f21237971cefe3e8850b8dd4e3ddfb37dbd3fdf27feeb1c811789799c7",
     ".agents/skills/visualize/references/anthropic-skill-guide-notes.md": "951e56b3cdc9f095c2184d80177ffe8840f3b02685f553fb56a2711a72f2e80e",
@@ -68,7 +68,7 @@
     },
     {
       "path": "prj-grill-me/references/bundled/memory-execute/guide.md",
-      "sha256": "0211d69d9695c0c595c7ea18c82b63cc94c09f1cc936f9c9b5b42b6bd90b306d"
+      "sha256": "7a0e2c848ead48e51d0743ffc409096182f334eb7553ec8b6abfa1d2bd23a307"
     },
     {
       "path": "prj-grill-me/references/bundled/memory-execute/references/analysis.md",
@@ -108,7 +108,7 @@
     },
     {
       "path": "prj-grill-me/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-grill-me/references/bundled/memory-explain/guide.md",
@@ -173,6 +173,10 @@
     {
       "path": "prj-grill-me/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-grill-me/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-grill-me/references/bundled/visualize/guide.md",
@@ -295,6 +299,10 @@
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
     },
     {
+      "path": "prj-memory-execute/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
+    },
+    {
       "path": "prj-memory-execute/references/bundled/visualize/guide.md",
       "sha256": "f1983d2c079c726af35a4cc1ff2d7745338ef928f1dc43804e2a30f2d5aaa82a"
     },
@@ -376,11 +384,11 @@
     },
     {
       "path": "prj-memory-execute/references/testing.md",
-      "sha256": "5c9b7bd365518253de349f469b2c80d1350e1ed2b71f3d7e91f41f3cebac4b5e"
+      "sha256": "72f2f487c098860819677814d85dbcb5e471c90e79b698e9d28b78eab2ecf0ab"
     },
     {
       "path": "prj-memory-execute/SKILL.md",
-      "sha256": "3622966bb0ab58dd9b4882d937085c112b3e7b3620d8188c2add8f5e667adb3c"
+      "sha256": "d938375e5df057221005d250246067b481ec0c9e2e4d0f7ac52ea829086b883e"
     },
     {
       "path": "prj-memory-explain/references/bundled/backend-implementation/guide.md",
@@ -420,7 +428,7 @@
     },
     {
       "path": "prj-memory-explain/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-memory-explain/references/bundled/memory-review/guide.md",
@@ -469,6 +477,10 @@
     {
       "path": "prj-memory-explain/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-memory-explain/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-memory-explain/references/bundled/visualize/guide.md",
@@ -540,7 +552,7 @@
     },
     {
       "path": "prj-memory-intake/references/bundled/memory-execute/guide.md",
-      "sha256": "0211d69d9695c0c595c7ea18c82b63cc94c09f1cc936f9c9b5b42b6bd90b306d"
+      "sha256": "7a0e2c848ead48e51d0743ffc409096182f334eb7553ec8b6abfa1d2bd23a307"
     },
     {
       "path": "prj-memory-intake/references/bundled/memory-execute/references/analysis.md",
@@ -580,7 +592,7 @@
     },
     {
       "path": "prj-memory-intake/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-memory-intake/references/bundled/memory-explain/guide.md",
@@ -641,6 +653,10 @@
     {
       "path": "prj-memory-intake/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-memory-intake/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-memory-intake/references/bundled/visualize/guide.md",
@@ -708,7 +724,7 @@
     },
     {
       "path": "prj-memory-plan/references/bundled/memory-execute/guide.md",
-      "sha256": "0211d69d9695c0c595c7ea18c82b63cc94c09f1cc936f9c9b5b42b6bd90b306d"
+      "sha256": "7a0e2c848ead48e51d0743ffc409096182f334eb7553ec8b6abfa1d2bd23a307"
     },
     {
       "path": "prj-memory-plan/references/bundled/memory-execute/references/analysis.md",
@@ -748,7 +764,7 @@
     },
     {
       "path": "prj-memory-plan/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-memory-plan/references/bundled/memory-explain/guide.md",
@@ -809,6 +825,10 @@
     {
       "path": "prj-memory-plan/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-memory-plan/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-memory-plan/references/bundled/visualize/guide.md",
@@ -900,7 +920,7 @@
     },
     {
       "path": "prj-memory-review/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-memory-review/references/bundled/memory-explain/guide.md",
@@ -949,6 +969,10 @@
     {
       "path": "prj-memory-review/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-memory-review/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-memory-review/references/bundled/visualize/guide.md",
@@ -1044,7 +1068,7 @@
     },
     {
       "path": "prj-memory-tidy/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-memory-tidy/references/bundled/memory-explain/guide.md",
@@ -1093,6 +1117,10 @@
     {
       "path": "prj-memory-tidy/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-memory-tidy/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-memory-tidy/references/bundled/visualize/guide.md",
@@ -1188,7 +1216,7 @@
     },
     {
       "path": "prj-memory-wiki/references/bundled/memory-execute/references/testing.md",
-      "sha256": "5423c98e741e4fa91fe069c118a15e13c9bde09c6be2e420b020b5d947e8ff2a"
+      "sha256": "62916e35d154d6c290400b62d2fb9145c6136e51b01abc7fd0b7aa3e34812eff"
     },
     {
       "path": "prj-memory-wiki/references/bundled/memory-explain/guide.md",
@@ -1225,6 +1253,10 @@
     {
       "path": "prj-memory-wiki/references/bundled/page-capture/references/scenarios.md",
       "sha256": "4ca607d2f6a3553e5e05f2ffda67da634fd79c27aea93906f2c835af31a9d117"
+    },
+    {
+      "path": "prj-memory-wiki/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-memory-wiki/references/bundled/visualize/guide.md",
@@ -1332,7 +1364,7 @@
     },
     {
       "path": "prj-page-capture/references/bundled/memory-execute/references/testing.md",
-      "sha256": "45da9edd59afc6e6730762ac5191309edbca7418b2e33904dccb05a3b4ee3379"
+      "sha256": "4fb4cbcb3e3c7bf073612d1a5a2da71c8f47cf53975f2c6debd19b68d68e3ad5"
     },
     {
       "path": "prj-page-capture/references/bundled/memory-explain/guide.md",
@@ -1377,6 +1409,10 @@
     {
       "path": "prj-page-capture/references/bundled/memory-wiki/references/templates.md",
       "sha256": "98107a28410b862885f3dcb49826c1f0c072839bb7c8e486b47d697b15b93948"
+    },
+    {
+      "path": "prj-page-capture/references/bundled/tester/guide.md",
+      "sha256": "172d53f022601397cdc0d493c2f202c146e7b5b6a6d7a6b6e4f8898a686e9915"
     },
     {
       "path": "prj-page-capture/references/bundled/visualize/guide.md",
@@ -1440,7 +1476,7 @@
     },
     {
       "path": "prj-tester/SKILL.md",
-      "sha256": "6d45b338d711e05361c150f933e969759d5c56d8b83d051d292bc0759cf48bef"
+      "sha256": "4c26920d5bdbec6bff137646db1228be2235c3da984421b583846647ffb6cb12"
     },
     {
       "path": "prj-visualize/references/animations.md",
