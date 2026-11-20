@@ -1,0 +1,42 @@
+{
+  "skill": "prj-frontend-implementation",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "Implement a responsive layout for the settings screen."
+      },
+      {
+        "prompt": "Fix the keyboard interaction in this frontend form."
+      },
+      {
+        "prompt": "Build a client-side component that renders a loading state."
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "Implement request validation for this backend API endpoint.",
+        "owner": "prj-backend-implementation"
+      },
+      {
+        "prompt": "Execute the implementation stage for this project memory task.",
+        "owner": "prj-memory-execute"
+      }
+    ]
+  },
+  "measure": {
+    "positive": [
+      {
+        "prompt": "설정 화면의 키보드 조작을 고쳐줘."
+      },
+      {
+        "prompt": "목록에 로딩 상태를 표시하는 UI 컴포넌트를 구현해 줘."
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "서버 API의 요청 검증을 구현해 줘.",
+        "owner": "prj-backend-implementation"
+      }
+    ]
+  }
+}

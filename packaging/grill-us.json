@@ -16,9 +16,13 @@
     "memory-tidy",
     "memory-wiki",
     "page-capture",
-    "visualize"
+    "visualize",
+    "frontend-implementation",
+    "backend-implementation"
   ],
   "sourceFiles": [
+    "backend-implementation/SKILL.md",
+    "frontend-implementation/SKILL.md",
     "grill-me/SKILL.md",
     "memory-execute/SKILL.md",
     "memory-execute/references/analysis.md",

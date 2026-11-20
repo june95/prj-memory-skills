@@ -1,0 +1,42 @@
+{
+  "skill": "prj-backend-implementation",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "Implement request validation for this backend API endpoint."
+      },
+      {
+        "prompt": "Fix this server behavior when persistence fails."
+      },
+      {
+        "prompt": "Add domain logic to the backend service."
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "Implement a responsive layout for the settings screen.",
+        "owner": "prj-frontend-implementation"
+      },
+      {
+        "prompt": "Execute the implementation stage for this project memory task.",
+        "owner": "prj-memory-execute"
+      }
+    ]
+  },
+  "measure": {
+    "positive": [
+      {
+        "prompt": "서버 API에서 잘못된 요청을 처리하도록 수정해 줘."
+      },
+      {
+        "prompt": "기존 저장 API의 오류 응답을 고쳐줘."
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "설정 화면 레이아웃을 고쳐줘.",
+        "owner": "prj-frontend-implementation"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 # Project Memory Starter Kit
 
-요구사항·설계 결정·구현·검증을 사용자 프로젝트의 로컬 `.memory`에 기록하고 이어서 작업하는 Codex·Claude Code 스킬10개입니다.
+Codex·Claude Code용 스킬 12개를 제공합니다. 프로젝트 작업을 로컬 `.memory`에 기록하거나 프론트엔드·백엔드 구현 스킬을 독립적으로 호출할 수 있습니다.
 
 ## 설치
 
@@ -24,19 +24,25 @@ npx skills@latest add june95/grill-us
 | [prj-memory-wiki](.agents/skills/memory-wiki/SKILL.md) | 명시 문서 수집·출처 기반 질의 |
 | [prj-page-capture](.agents/skills/page-capture/SKILL.md) | 기존 호스트 도구로 PNG·JSON 증거 캡처 |
 | [prj-visualize](.agents/skills/visualize/SKILL.md) | 명시 HTML 시각화 생성 |
+| [prj-frontend-implementation](.agents/skills/frontend-implementation/SKILL.md) | 화면·컴포넌트·클라이언트 상호작용 구현 |
+| [prj-backend-implementation](.agents/skills/backend-implementation/SKILL.md) | 서버 동작·API·데이터 처리 구현 |
 
 ~~~sh
 npx skills@latest add june95/grill-us --skill prj-memory-explain -a codex
 npx skills@latest add june95/grill-us --skill prj-memory-explain -a claude-code
 ~~~
 
-Codex에서는 `$prj-memory-explain`, Claude Code에서는 `/prj-memory-explain`처럼 요청합니다. 각 스킬은 필수 참고 문서를 포함하며 다른 스킬을 자동 설치하지 않습니다. 설치 경로는 읽기 전용 문서 위치이고 기록은 실제 사용자 프로젝트의 `.memory`에 둡니다.
+Codex에서는 `$prj-memory-explain`, Claude Code에서는 `/prj-memory-explain`처럼 요청합니다. 각 스킬은 필요한 참고 문서를 포함합니다. 프로젝트 메모리 작업은 대상 프로젝트의 `.memory`에 기록합니다.
 
 목록·업데이트·제거·기존 plugin 전환은 [설치 안내](docs/skills-installation.md), 실제 확인 버전·범위와 한계는 [skills 호환성](docs/skills-compatibility.md), 이전 plugin의 당시 결과는 [과거 보고](docs/plugin-compatibility.md)를 참고합니다. 최종 후보의 두 호스트 native 호출을 확인했으며 공개 주소 재설치는 별도입니다.
 
+## 구현 스킬 단독 사용
+
+대상 저장소에서 필요한 스킬을 선택해 설치한 뒤 작업을 요청합니다. Codex는 `$prj-frontend-implementation 목록의 빈 상태를 구현하고 검증해 줘`, Claude Code는 `/prj-backend-implementation 잘못된 요청 본문에 400을 반환하도록 구현하고 검증해 줘`처럼 호출합니다. Task 경로 없이 작업을 시작할 수 있습니다. 스킬은 요청한 파일을 변경하고 검증 결과와 한계를 채팅에 반환합니다. 단독 호출은 기존 `.memory`를 보존합니다.
+
 ## 배포 저장소 관리
 
-편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 allowlist입니다. source 폴더/name은 기존 내부 ID를 유지하고 source10개와 CodeBurn은 internal로 숨깁니다. 설치 대상은 생성한 `skills/prj-*`입니다. CodeBurn runtime·개인 기록·개발용 도구는 공식 payload에 포함하지 않습니다.
+편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 allowlist입니다. source 폴더/name은 기존 내부 ID를 유지하고 source 12개와 CodeBurn은 internal로 숨깁니다. 설치 대상은 생성한 `skills/prj-*`입니다. CodeBurn runtime·개인 기록·개발용 도구는 공식 payload에 포함하지 않습니다.
 
 ~~~sh
 node scripts/build-skills.mjs
@@ -216,7 +222,7 @@ node scripts/validate-skills.mjs
 - **HTML ID:** 각 html fence 안의 시작 태그에서 같은 ID를 찾아 중복 속성의 파일/행·최초 행을 표시합니다. 서로 다른 fence는 독립적이며 속성명은 대소문자를 구분하지 않고 ID 값은 구분합니다. 태그/속성 구분에는 HTML ASCII 공백만 사용하고 NBSP 등은 이름/값의 일부로 유지합니다. comments, script/style 및 기타 raw-text 내용, quoted 속성 안의 문자열과 data-id는 ID로 오인하지 않습니다. 빈/boolean id도 비교하지만 일반 HTML 문법 오류까지 검사하지는 않습니다.
 - **ID 문자 참조:** 숫자 참조(잘못된 범위의 replacement와 C1 치환 포함)는 [HTML 규칙](https://html.spec.whatwg.org/multipage/parsing.html#numeric-character-reference-end-state)에 따라 한 번만 정규화합니다. named reference는 `amp`/`lt`/`gt`/`quot`와 해당 대문자형, `apos`/`nbsp`를 지원합니다. 다른 named reference가 있으면 해당 ID만 정보 진단과 함께 비교에서 제외합니다. 전체 entity 표, 실제 DOM 트리·namespace·스크립트의 동적 ID 변화는 검사 범위가 아닙니다.
 - **Git:** OS 임시 저장소에서 ignore 부정 패턴·부모 제외·NUL 출력·tracked 경로·오류와 표준/과거 메시지 식별을 확인합니다. commit-check 문서의 secret 검사 명령을 정확히 하나 추출해 shell 없이 실행하고, 가짜 값을 stage하면 파일명만 나오고 값은 나오지 않는지, 저장소에 설정된 textconv 변환기를 실행하지 않는지, 깨끗하면 stdout·stderr가 모두 비는지 확인합니다. 임시 저장소의 명시 파일만 staging하고 소유 경로를 확인한 뒤 정리합니다. 실제 프로젝트의 index·config·current를 변경하지 않습니다.
-- **스킬 발동 경계:** `evals/routing`의 영어 trigger case로 공개 스킬 10개의 발동 순위, negative의 owner, description 쌍 유사도(0.75 이상 실패), 트리거 문구를 단어 겹침 근사로 검사합니다. 한국어 요청과 실제 모델의 발동은 판단하지 않습니다([Skill Routing](.agents/skills/memory-execute/references/validation-scope.md#skill-routing)).
+- **스킬 발동 경계:** `evals/routing`의 영어 trigger case로 공개 스킬의 발동 순위, negative의 owner, description 쌍 유사도(0.75 이상 실패), 트리거 문구를 단어 겹침 근사로 검사합니다. 한국어 요청과 실제 모델의 발동은 판단하지 않습니다([Skill Routing](.agents/skills/memory-execute/references/validation-scope.md#skill-routing)).
 
 회귀 검사만 실행하려면 `node --test tests/validate-skills.test.mjs tests/build-skills.test.mjs tests/repository-skills.test.mjs tests/skills-install.test.mjs tests/skill-routing.test.mjs`를 사용합니다. 전체 검사는 격리 npx 통합 시험을 포함해 네트워크와 skills CLI1.7.4 다운로드가 필요합니다. 시험한 환경은 Node26.12.1·Windows이며 전체 검사는 Node22.20 이상을 요구합니다. Native 모델 호출은 별도 시험입니다.
 
