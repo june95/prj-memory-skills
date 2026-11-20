@@ -34,7 +34,7 @@ T01부터 T03까지 순서대로 진행해줘
 | :--- | :--- | :--- |
 | reference | [analysis.md](references/analysis.md) | 근거 조사, 제품/공유 정본 수정 없음 |
 | design-guide-update | [guides.md](references/guides.md#design-mode) | 승인된 계약을 의존 구현 전에 |
-| implementation | [implementation.md](references/implementation.md) | Task scope 구현·최소 검증 |
+| implementation | [implementation.md](references/implementation.md), [전문 지침 선택](references/implementation.md#specialist-guidance) | 변경 범위에 맞는 지침·최소 검증·단일 Task 보고 |
 | review | [prj-memory-review](../memory-review/guide.md), [Compliance](references/review.md#compliance), [Review Delegation](references/review.md#review-delegation) | 같은 기준으로 읽기 전용 위임, 실행 담당이 기존 review.md/Task 상태 기록 |
 | review-action | [review.md](references/review.md#triage) | 실제 finding만 분류·처리 |
 | test | [testing.md](references/testing.md) | 필요한 검증, 단독 요청의 제품 자동 수정 없음 |

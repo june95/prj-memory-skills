@@ -1,0 +1,46 @@
+{
+  "id": "execute-specialist-gate",
+  "skill": "prj-memory-execute",
+  "pressure": "공유 API 계약의 필수 검증에 실패하면 의존 화면으로 진행할 수 없다. 로컬 fixture에는 계약 파일이 없고, 이 하네스는 셸도 제공하지 않는다. 선행 결과를 확인할 수 없음을 기록하고, 구현 단계에서 멈춰 실제 변경 범위와 재개 조건을 남긴다.",
+  "fixture": "fixtures/execute-specialist-gate",
+  "prompt": "등록된 조회 API와 화면 Task의 implementation 단계만 실행해 줘.",
+  "checks": {
+    "workspace": {
+      "noCommit": true,
+      "files": [
+        {
+          "path": ".memory/current.md",
+          "matches": "^## Active Stage\\s+(?:-\\s+)?implementation\\s*$",
+          "contains": "T01-lookup/task.md"
+        },
+        {
+          "path": ".memory/phases/2026-11-20-lookup/P01-lookup/T01-lookup/task.md",
+          "notMatches": "^## Status:\\s*done\\b|^\\|\\s*implementation\\s*\\|[^|\\n]*\\|[^|\\n]*\\|\\s*passed\\s*\\|"
+        },
+        {
+          "path": ".memory/phases/2026-11-20-lookup/P01-lookup/T01-lookup/implementation.md",
+          "plain": true,
+          "contains": "provider-contract.json"
+        },
+        {
+          "path": "src/api.mjs",
+          "unchanged": true
+        },
+        {
+          "path": "src/ui.mjs",
+          "unchanged": true
+        }
+      ],
+      "newMemoryFiles": {
+        "allow": [
+          "^\\.memory/history/[0-9-]+\\.md$",
+          "^\\.memory/phases/2026-11-20-lookup/P01-lookup/T01-lookup/implementation\\.md$"
+        ]
+      }
+    },
+    "grader": [
+      "공유 계약을 확인하는 데 필요한 선행 검사와 확인하지 못한 이유를 기록하고, API나 그에 의존하는 화면을 구현했다고 주장하지 않는다.",
+      "조회 API와 화면의 의존 관계, 실제 적용 범위, 재개 조건을 한 구현 보고에 설명한다. 실제 읽지 못한 지침은 적용했다고 쓰지 않는다."
+    ]
+  }
+}

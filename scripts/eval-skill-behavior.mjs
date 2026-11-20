@@ -78,7 +78,9 @@ export function scenarioErrors(data, fileName) {
         const conditions = Object.keys(item).filter(key => !['path', 'optional', 'plain'].includes(key));
         if (!conditions.length) errors.push('files 항목에 조건 필요: ' + item.path);
         for (const key of conditions) {
-          if (!['contains', 'notContains', 'matches', 'notMatches'].includes(key)) errors.push('허용하지 않는 files 키: ' + key);
+          if (key === 'unchanged') {
+            if (item[key] !== true) errors.push('files.unchanged는 true로만 씀');
+          } else if (!['contains', 'notContains', 'matches', 'notMatches'].includes(key)) errors.push('허용하지 않는 files 키: ' + key);
           else if (typeof item[key] !== 'string' || !item[key]) errors.push(key + '는 비어 있지 않은 문자열이어야 함');
           else if (key.endsWith('atches')) { try { new RegExp(item[key], 'mi'); } catch { errors.push('잘못된 정규식: ' + key); } }
         }
@@ -350,6 +352,7 @@ export function evaluateWorkspace(workspace = {}, before, after, readAfter, read
     const failures = [];
     if (text === null) { if (!item.optional) failures.push('파일 없음'); }
     else {
+      if (item.unchanged && (before.files[item.path] === undefined || before.files[item.path] !== after.files[item.path])) failures.push('전후 파일 불일치');
       if (item.contains !== undefined && !text.includes(item.contains)) failures.push('contains 불일치');
       if (item.notContains !== undefined && text.includes(item.notContains)) failures.push('notContains 위반');
       if (item.matches !== undefined && !new RegExp(item.matches, 'mi').test(text)) failures.push('matches 불일치');

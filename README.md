@@ -40,6 +40,8 @@ Codex에서는 `$prj-memory-explain`, Claude Code에서는 `/prj-memory-explain`
 
 대상 저장소에서 필요한 스킬을 선택해 설치한 뒤 작업을 요청합니다. Codex는 `$prj-frontend-implementation 목록의 빈 상태를 구현하고 검증해 줘`, Claude Code는 `/prj-backend-implementation 잘못된 요청 본문에 400을 반환하도록 구현하고 검증해 줘`처럼 호출합니다. Task 경로 없이 작업을 시작할 수 있습니다. 스킬은 요청한 파일을 변경하고 검증 결과와 한계를 채팅에 반환합니다. 단독 호출은 기존 `.memory`를 보존합니다.
 
+등록된 Task를 실행할 때는 `prj-memory-execute`의 구현 단계가 변경 범위에 맞는 지침을 고릅니다. 화면과 API가 함께 바뀌면 두 지침을 적용하고 결과를 하나의 `implementation.md`에 남깁니다. `prj-memory-execute`를 단독 설치해도 두 지침을 번들 문서로 읽을 수 있습니다.
+
 ## 배포 저장소 관리
 
 편집 정본은 `.agents/skills`와 `packaging/grill-us.json`의 명시 allowlist입니다. source 폴더/name은 기존 내부 ID를 유지하고 source 12개와 CodeBurn은 internal로 숨깁니다. 설치 대상은 생성한 `skills/prj-*`입니다. CodeBurn runtime·개인 기록·개발용 도구는 공식 payload에 포함하지 않습니다.
@@ -228,7 +230,7 @@ node scripts/validate-skills.mjs
 
 실제 모델을 호출하는 개발용 측정은 회귀에 들어가지 않으므로 필요할 때 따로 실행합니다. 행동 eval(`node scripts/eval-skill-behavior.mjs --model <id>`)이 하는 일은 다음과 같습니다.
 
-- 대상: prj-memory-execute, prj-memory-review, prj-grill-me의 압박 시나리오 6개. 작업 파일을 `.memory`에 남기지 않는지 보는 시나리오도 들어 있습니다.
+- 대상: prj-memory-execute, prj-memory-review, prj-grill-me의 행동 시나리오. 복합 구현의 선행 계약을 확인할 수 없을 때 단계와 기록을 보존하는 사례를 포함합니다.
 - 방식: 임시 Git 저장소에서 단일 턴으로 실행합니다. 작업공간을 결정적으로 먼저 검사하고, 그다음 실행 기록을 비신뢰 데이터로 채점합니다.
 
 주의할 점:

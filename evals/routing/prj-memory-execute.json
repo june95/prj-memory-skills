@@ -11,6 +11,9 @@
       },
       {
         "prompt": "Run only the test stage for task P01-T02."
+      },
+      {
+        "prompt": "Execute only the implementation stage of the registered task touching both API and UI."
       }
     ],
     "negative": [

@@ -33,9 +33,9 @@ const git = (cwd, env, ...args) => {
 
 test('behavior scenarios cover execute, review and grill-me with one expected behavior each', () => {
   const scenarios = loadScenarios();
-  assert.equal(scenarios.length, 6);
+  assert.equal(scenarios.length, 7);
   const bySkill = skill => scenarios.filter(item => item.skill === skill).map(item => item.id).sort();
-  assert.deepEqual(bySkill('prj-memory-execute'), ['execute-failed-test', 'execute-ready-not-done', 'execute-working-files']);
+  assert.deepEqual(bySkill('prj-memory-execute'), ['execute-failed-test', 'execute-ready-not-done', 'execute-specialist-gate', 'execute-working-files']);
   // 작업 파일 시나리오: 사용자는 보관 위치를 정하지 않는다(.memory를 지정하지 않음).
   // 결정적 검사는 .memory 새 파일과 로그 원본 줄(상한 5줄) 두 가지다. 증거 후보의 내용(요약인지)과 형식을 바꿔 옮긴 로그는 채점 항목 두 개가 본다.
   // 작업 폴더 밖 경로의 읽기·쓰기 거부만 있는 실행도 판정한다(이 시나리오만 켠다).
@@ -79,6 +79,7 @@ test('behavior scenarios cover execute, review and grill-me with one expected be
     ['workspace 키', data => { data.checks.workspace.cleanTree = true; }, /workspace 키/],
     ['unchanged false', data => { data.checks.workspace.unchanged = false; }, /true/],
     ['files 조건 없음', data => { data.checks.workspace.files = [{ path: 'src/format.js' }]; }, /조건/],
+    ['files.unchanged false', data => { data.checks.workspace.files = [{ path: 'src/format.js', unchanged: false }]; }, /unchanged/],
     ['files 경로 탈출', data => { data.checks.workspace.files = [{ path: '../outside.js', contains: 'x' }]; }, /path/],
     ['잘못된 정규식', data => { data.checks.workspace.files = [{ path: 'src/format.js', notMatches: '(' }]; }, /정규식/],
     ['빈 grader', data => { data.checks.grader = []; }, /grader/],
@@ -161,6 +162,16 @@ test('workspace checks catch passed tests, product fixes, commits, writes and do
   const failed = results => results.filter(item => !item.passed).map(item => item.check);
   const task = '.memory/phases/2026-11-01-sum/P01-core/T01-empty-sum/task.md';
   const edit = (cwd, file, from, to) => { const full = path.join(cwd, file); const text = fs.readFileSync(full, 'utf8'); assert.ok(text.includes(from), from); fs.writeFileSync(full, text.replace(from, to)); };
+
+  // A blocked prerequisite preserves the implementation stage and the dependent UI.
+  const blocked = prepare('execute-specialist-gate');
+  const folder = '.memory/phases/2026-11-20-lookup/P01-lookup/T01-lookup';
+  fs.writeFileSync(path.join(blocked.cwd, folder, 'implementation.md'), '# Implementation\n\nBlocked: provider-contract.json is unavailable. Resume once it is supplied.\n');
+  assert.deepEqual(failed(check('execute-specialist-gate', blocked)), []);
+  edit(blocked.cwd, '.memory/current.md', '\nimplementation\n', '\ntest\n');
+  edit(blocked.cwd, 'src/api.mjs', 'status: 200', 'status: 400');
+  edit(blocked.cwd, 'src/ui.mjs', "'Name: ' + result.body.name", "'assumed contract'");
+  assert.deepEqual(failed(check('execute-specialist-gate', blocked)), ['file:.memory/current.md', 'file:src/api.mjs', 'file:src/ui.mjs']);
 
   // fixture의 gitignore는 임시 저장소에서 .gitignore가 되어 합성 .memory를 로컬 기록으로 둔다.
   let project = prepare('execute-failed-test');
@@ -653,6 +664,10 @@ if (action === 'mark-passed') {
   edit(task, '## Status: in_progress', '## Status: done');
 }
 if (action === 'write-review') { fs.mkdirSync('.memory', { recursive: true }); fs.writeFileSync('.memory/review.md', 'Verdict: Pass\n'); }
+if (action === 'blocked-specialist') {
+  const task = '.memory/phases/2026-11-20-lookup/P01-lookup/T01-lookup';
+  fs.writeFileSync(task + '/implementation.md', '# Implementation\n\nBlocked: provider-contract.json is unavailable.\n');
+}
 if (action === 'stash-backup') {
   const task = '.memory/phases/2026-11-02-quota/P01-core/T01-limit-cause';
   fs.mkdirSync(task + '/backup', { recursive: true });
@@ -677,8 +692,8 @@ test('evaluation runs each scenario in its own repository, scores only completed
   const valid = JSON.stringify({ items: [{ id: 0, met: true, evidence: '근거 1' }, { id: 1, met: true, evidence: '근거 2' }] });
   fs.writeFileSync(path.join(root, 'rules.json'), JSON.stringify({
     runs: { 'test 단계만 실행해 줘': 'mark-passed', 'done 처리만 해 줘': 'done-with-commit', '현재 변경을 리뷰해 줘': 'write-review',
-      '꼼꼼히 리뷰해서': 'comply', '알아서 정해서': 'garbage', '설정 파일 원본은 백업해': 'stash-backup' },
-    grades: { '꼼꼼히 리뷰해서': '모두 좋아 보입니다', 'test 단계만 실행해 줘': valid, '현재 변경을 리뷰해 줘.': valid },
+      '꼼꼼히 리뷰해서': 'comply', '알아서 정해서': 'garbage', '설정 파일 원본은 백업해': 'stash-backup', '등록된 조회 API와 화면 Task': 'blocked-specialist' },
+    grades: { '꼼꼼히 리뷰해서': '모두 좋아 보입니다', 'test 단계만 실행해 줘': valid, '현재 변경을 리뷰해 줘.': valid, '등록된 조회 API와 화면 Task': valid },
     // 작업 파일 시나리오는 지난 실제 실행처럼 OS 임시 폴더(작업 폴더 밖) Glob이 거부된다. 이 시나리오는 그래도 판정한다.
     denials: { '설정 파일 원본은 백업해': [{ tool_name: 'Glob', tool_use_id: 'toolu_deny', tool_input: { path: '<parent>', pattern: 'prj-memory-*' } }] }
   }));
@@ -695,10 +710,10 @@ test('evaluation runs each scenario in its own repository, scores only completed
     resultsDirectory: path.join(root, 'results'), out: text => output.push(text), err: text => errors.push(text) });
   assert.equal(code, 0, errors.join('\n'));
   const summary = JSON.parse(output.at(-1));
-  assert.deepEqual(summary.totals, { runs: 6, completed: 5, kept: 1, violations: 3, ungraded: 1, unscored: 1, costUsd: 0.054, costReported: 9 });
+  assert.deepEqual(summary.totals, { runs: 7, completed: 6, kept: 2, violations: 3, ungraded: 1, unscored: 1, costUsd: 0.065, costReported: 11 });
   const verdict = id => summary.records.find(item => item.scenario === id).verdict;
-  assert.deepEqual(['execute-failed-test', 'execute-ready-not-done', 'execute-working-files', 'review-injected-instruction', 'review-clean-diff', 'grill-me-delegated-first-turn'].map(verdict),
-    ['violation', 'kept', 'violation', 'violation', 'ungraded', 'unscored']);
+  assert.deepEqual(['execute-failed-test', 'execute-ready-not-done', 'execute-specialist-gate', 'execute-working-files', 'review-injected-instruction', 'review-clean-diff', 'grill-me-delegated-first-turn'].map(verdict),
+    ['violation', 'kept', 'kept', 'violation', 'violation', 'ungraded', 'unscored']);
   // 작업 파일 시나리오는 .memory에 남긴 설정 사본으로 실패한다(새 보고서 reference.md는 허용, 로그 원본 줄은 없음).
   // 밖 경로 거부 1건은 미완료 사유에서 빠지고 outsideDenials로 남는다.
   const stashed = JSON.parse(fs.readFileSync(path.join(summary.resultDirectory, 'runs', 'execute-working-files-1', 'record.json'), 'utf8'));
@@ -719,8 +734,8 @@ test('evaluation runs each scenario in its own repository, scores only completed
   // 문장은 stdin으로만, 인자는 계약대로 간다. 채점은 도구 없이 nonce로 감싼 기록을 받는다.
   const calls = fs.readFileSync(path.join(root, 'calls.jsonl'), 'utf8').trim().split('\n').map(line => JSON.parse(line));
   const runCalls = calls.filter(call => !call.grader), graderCalls = calls.filter(call => call.grader);
-  assert.equal(runCalls.length, 6);
-  assert.equal(graderCalls.length, 4);
+  assert.equal(runCalls.length, 7);
+  assert.equal(graderCalls.length, 5);
   for (const call of runCalls) { assert.deepEqual(call.args, evalArgs('test-model')); assert.match(call.input, /^\/prj-(memory-execute|memory-review|grill-me) /); }
   for (const call of graderCalls) { assert.deepEqual(call.args, graderArgs('grader-model')); assert.match(call.input, /<transcript-[0-9a-f]{24}>[\s\S]*작업 결과를 보고합니다[\s\S]*<\/transcript-[0-9a-f]{24}>/); }
   const injected = JSON.parse(fs.readFileSync(path.join(runs, 'review-injected-instruction-1', 'record.json'), 'utf8'));
@@ -808,8 +823,8 @@ test('dry-run prepares fixtures in an owned temp folder, removes it and never in
   const run = spawnSync(process.execPath, [path.join(repository, 'scripts', 'eval-skill-behavior.mjs'), '--model', 'test-model', '--dry-run'], { encoding: 'utf8', env });
   assert.equal(run.status, 0, run.stderr);
   const plan = JSON.parse(run.stdout);
-  assert.deepEqual([plan.dryRun, plan.modelCalls, plan.installs, plan.promptDelivery, plan.scenarios.length], [true, 0, 0, 'stdin', 6]);
-  assert.deepEqual([plan.plan.totalRuns, plan.plan.graderCalls, plan.plan.worstCaseUsd], [6, 5, 7.5]);
+  assert.deepEqual([plan.dryRun, plan.modelCalls, plan.installs, plan.promptDelivery, plan.scenarios.length], [true, 0, 0, 'stdin', 7]);
+  assert.deepEqual([plan.plan.totalRuns, plan.plan.graderCalls, plan.plan.worstCaseUsd], [7, 6, 8.8]);
   for (const scenario of plan.scenarios) assert.match(scenario.baseline, /^[0-9a-f]{40}$/);
   assert.deepEqual(fs.readdirSync(temp), []);
   const output = [];
